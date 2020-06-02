@@ -1,8 +1,4 @@
-export type ShopItem = {
-  name: string;
-  price: number;
-  image?: string;
-};
+import { ShopItem } from './types';
 
 const ItemsForSale: ShopItem[] = [
   {

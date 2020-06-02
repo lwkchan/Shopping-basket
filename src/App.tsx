@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { uuid } from 'uuidv4';
 import { Container, Drawer, makeStyles, Box } from '@material-ui/core';
 import ShopItemsGrid from './components/ShopItemsGrid';
-import shopItems, { ShopItem } from './itemsForSale';
+import shopItems from './shopItems';
 import NavigationBar from './components/NavigationBar';
 import BasketTable from './components/BasketTable';
+import { ShopItemInBasket, ShopItem } from './types';
 
 const drawerWidth = 240;
 
@@ -30,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
-
-export type ShopItemInBasket = ShopItem & { uuid: string };
 
 function App() {
   const classes = useStyles();
