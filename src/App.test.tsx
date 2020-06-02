@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, within } from '@testing-library/react';
 import App from './App';
 
 test('user can add three Beans to the basket and see the expected total amount', () => {
@@ -8,10 +8,16 @@ test('user can add three Beans to the basket and see the expected total amount',
     fireEvent.click(screen.getByText('Beans'));
   }
 
-  fireEvent.click(screen.getByText('Show basket'));
+  fireEvent.click(screen.getByLabelText('Show basket'));
 
-  expect(screen.getAllByText('Beans').length).toEqual(3);
-  expect(screen.getAllByText('0.50'));
+  const basket = screen.getByTestId('basket');
 
-  screen.getByText('2.40');
+  const { getAllByText, getByText } = within(basket);
+  const beansListings = getAllByText('Beans');
+  expect(beansListings).toHaveLength(3);
+
+  const priceListings = getAllByText('0.50');
+  expect(priceListings).toHaveLength(3);
+
+  getByText('2.40');
 });
