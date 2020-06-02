@@ -12,6 +12,7 @@ import {
 
 type Props = {
   item: ShopItem;
+  onAddToCartClick: (shopItem: ShopItem) => void;
 };
 
 const useStyles = makeStyles({
@@ -20,10 +21,15 @@ const useStyles = makeStyles({
   },
 });
 
-function ItemCard({ item }: Props) {
+function ItemCard({ item, onAddToCartClick }: Props) {
   const classes = useStyles();
 
   const { image, name, price } = item;
+
+  const handleAddToCartClick = () => {
+    onAddToCartClick(item);
+  };
+
   return (
     <Card>
       <CardMedia className={classes.media} image={image}></CardMedia>
@@ -32,7 +38,11 @@ function ItemCard({ item }: Props) {
         <Typography variant="body2">£{price.toFixed(2)}</Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAddToCartClick}
+        >
           Add to cart
         </Button>
       </CardActions>

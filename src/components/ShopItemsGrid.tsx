@@ -5,14 +5,15 @@ import ItemCard from './ItemCard';
 
 type Props = {
   items: ShopItem[];
+  onAddToCartClick: (shopItem: ShopItem) => void;
 };
 
-function ShopItemsGrid({ items }: Props) {
+function ShopItemsGrid({ items, onAddToCartClick }: Props) {
   return (
     <Grid container spacing={4}>
       {items.map((item) => (
-        <Grid item>
-          <ItemCard item={item} />
+        <Grid key={item.name} item>
+          <ItemCard onAddToCartClick={onAddToCartClick} item={item} />
         </Grid>
       ))}
     </Grid>
