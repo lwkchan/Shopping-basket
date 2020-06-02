@@ -18,6 +18,22 @@ it("renders the item's prices to two decimal places", () => {
 
   mockItems.forEach((item) => {
     const expectedNumber = item.price.toFixed(2).toString();
-    screen.getByText(expectedNumber);
+    try {
+      screen.getByText(expectedNumber);
+    } catch (e) {
+      // multiple items might have the same price, so get them all
+      const elsWithSamePrice = screen.queryAllByText(expectedNumber);
+
+      // and then verify that there are others in the items list that have that same price
+      const itemsOfSamePrice = mockItems.filter(
+        ({ price }) => item.price === price
+      );
+
+      expect(elsWithSamePrice.length).toEqual(itemsOfSamePrice.length);
+    }
   });
+});
+it('has the data-testid of basket for testing purposes', () => {
+  render(<BasketTable items={mockItems} />);
+  screen.getByTestId('basket');
 });
