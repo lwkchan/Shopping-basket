@@ -19,5 +19,5 @@ test('user can add three Beans to the basket and see the expected total amount',
   const priceListings = getAllByText('0.50');
   expect(priceListings).toHaveLength(3);
 
-  getByText('2.40');
+  getByText('1.50');
 });
