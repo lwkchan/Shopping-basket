@@ -5,7 +5,7 @@ import App from './App';
 test('user can add three Beans to the basket and see the expected total amount', () => {
   render(<App />);
   for (let i = 0; i < 3; i++) {
-    fireEvent.click(screen.getByText('Beans'));
+    fireEvent.click(screen.getByText('Add to cart'));
   }
 
   fireEvent.click(screen.getByLabelText('Show basket'));
