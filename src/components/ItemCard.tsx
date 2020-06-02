@@ -42,8 +42,9 @@ function ItemCard({ item, onAddToCartClick }: Props) {
           variant="contained"
           color="primary"
           onClick={handleAddToCartClick}
+          aria-label={`Add ${name} to basket`}
         >
-          Add to cart
+          <span aria-hidden={true}>Add to cart</span>
         </Button>
       </CardActions>
     </Card>
