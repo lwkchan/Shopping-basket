@@ -7,7 +7,7 @@ import {
   TableCell,
   TableBody,
 } from '@material-ui/core';
-import { ShopItemInBasket } from '../App';
+import { ShopItemInBasket } from '../types';
 
 type Props = { items: ShopItemInBasket[] };
 

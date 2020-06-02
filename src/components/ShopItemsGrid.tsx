@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import { ShopItem } from '../itemsForSale';
 import ItemCard from './ItemCard';
+import { ShopItem } from '../types';
 
 type Props = {
   items: ShopItem[];
