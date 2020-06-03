@@ -19,7 +19,8 @@ test('user can add three Beans to the basket and see the expected total amount',
   const priceListings = getAllByText('0.50');
   expect(priceListings).toHaveLength(3);
 
-  getByText('1.50');
+  // grand total and subtotal
+  expect(getAllByText('1.50')).toHaveLength(2);
 });
 test('user can add two Cokes to the basket and see the expected total amount with their savings applied', () => {
   render(<App />);
@@ -35,16 +36,13 @@ test('user can add two Cokes to the basket and see the expected total amount wit
   const cokeListings = getAllByText('Coke');
   expect(cokeListings).toHaveLength(2);
 
-  getByText('1.40'); // sub-total
-
-  getByText('1.00'); // total
-
   // user can see savings label and how much was saved
   getByText('Coke 2 for £1');
   getByText('-0.40');
 
-  // user can see grand total
-  getByText('1.00');
+  getByText('1.40'); // sub-total
+
+  getByText('1.00'); // total
 });
 test('user can add one Coke and two beans to the basket and see the expected total amount', () => {
   render(<App />);
@@ -71,6 +69,6 @@ test('user can add one Coke and two beans to the basket and see the expected tot
   const beansPriceListings = getAllByText('0.50');
   expect(beansPriceListings).toHaveLength(2);
 
-  // grand total
-  getByText('1.70');
+  // grand total and subtotal
+  expect(getAllByText('1.70')).toHaveLength(2);
 });
