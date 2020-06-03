@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen, within } from '@testing-library/react';
 import App from './App';
 
-test('user can add three Beans to the basket and see the expected total amount', () => {
+test('user can add three Beans to the basket and see the expected total amount with savings', () => {
   render(<App />);
   for (let i = 0; i < 3; i++) {
     fireEvent.click(screen.getByLabelText('Add Beans to basket'));
@@ -13,14 +13,21 @@ test('user can add three Beans to the basket and see the expected total amount',
   const basket = screen.getByTestId('basket');
 
   const { getAllByText, getByText } = within(basket);
+
   const beansListings = getAllByText('Beans');
   expect(beansListings).toHaveLength(3);
 
   const priceListings = getAllByText('0.50');
   expect(priceListings).toHaveLength(3);
 
-  // grand total and subtotal
-  expect(getAllByText('1.50')).toHaveLength(2);
+  getByText('1.50'); // sub-total
+
+  // savings
+  getByText('Beans 3 for 2');
+  getByText('-0.50');
+
+  // grand total
+  getByText('1.00');
 });
 test('user can add two Cokes to the basket and see the expected total amount with their savings applied', () => {
   render(<App />);
