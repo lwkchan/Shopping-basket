@@ -35,10 +35,9 @@ test('user can add two Cokes to the basket and see the expected total amount wit
   const cokeListings = getAllByText('Coke');
   expect(cokeListings).toHaveLength(2);
 
-  const priceListings = getAllByText('1.00');
-  expect(priceListings).toHaveLength(2);
-
   getByText('1.40'); // sub-total
+
+  getByText('1.00'); // total
 
   // user can see savings label and how much was saved
   getByText('Coke 2 for £1');
