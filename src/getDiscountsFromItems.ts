@@ -37,7 +37,9 @@ function getDiscountsFromItems(items: ShopItemInBasket[]): DiscountRow[] {
         return acc;
       }
 
-      const numberOfTimesQualified = quantityInBasket / quantityToQualify;
+      const numberOfTimesQualified = Math.floor(
+        quantityInBasket / quantityToQualify
+      );
       const amountOff = amountOffPerItemQualified * quantityToQualify;
       const roundedAmountOff = parseFloat(amountOff.toFixed(2));
 
