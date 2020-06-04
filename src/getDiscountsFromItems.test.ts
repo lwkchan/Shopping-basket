@@ -51,7 +51,7 @@ test('it takes six beans with a 3 for 2 discount and returns and array of two di
   ]);
 });
 
-test('it takes one code and two beans, and applies no discounts', () => {
+test('it takes one coke and two beans, and applies no discounts', () => {
   const result = getDiscountsFromItems([
     cokeInBasket,
     beansInBasket,
@@ -59,4 +59,18 @@ test('it takes one code and two beans, and applies no discounts', () => {
   ]);
 
   expect(result).toEqual([]);
+});
+test('it takes five cokes and applies 2 discounts', () => {
+  const result = getDiscountsFromItems([
+    cokeInBasket,
+    cokeInBasket,
+    cokeInBasket,
+    cokeInBasket,
+    cokeInBasket,
+  ]);
+
+  expect(result).toEqual([
+    { amountOff: 0.4, label: 'Coke 2 for £1' },
+    { amountOff: 0.4, label: 'Coke 2 for £1' },
+  ]);
 });
