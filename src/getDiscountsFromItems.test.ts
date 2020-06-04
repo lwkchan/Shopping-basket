@@ -37,6 +37,5 @@ test('it takes the basket items with discount info and returns and array of tota
     },
   ]);
 
-  console.log(result);
   expect(result).toEqual([{ label: 'Beans 3 for 2', amountOff: 0.5 }]);
 });
