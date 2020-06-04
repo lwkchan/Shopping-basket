@@ -33,6 +33,10 @@ function getDiscountsFromItems(items: ShopItemInBasket[]): DiscountRow[] {
         discountInfo: { label, quantityToQualify, amountOffPerItemQualified },
       } = item;
 
+      if (quantityInBasket < quantityToQualify) {
+        return acc;
+      }
+
       const numberOfTimesQualified = quantityInBasket / quantityToQualify;
       const amountOff = amountOffPerItemQualified * quantityToQualify;
       const roundedAmountOff = parseFloat(amountOff.toFixed(2));

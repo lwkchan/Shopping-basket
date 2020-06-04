@@ -6,6 +6,7 @@ import shopItems from './shopItems';
 import NavigationBar from './components/NavigationBar';
 import BasketTable from './components/BasketTable';
 import { ShopItemInBasket, ShopItem } from './types';
+import getDiscountsFromItems from './getDiscountsFromItems';
 
 const drawerWidth = 240;
 
@@ -36,6 +37,8 @@ function App() {
   const classes = useStyles();
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState<boolean>(false);
   const [itemsInBasket, setItemsInBasket] = useState<ShopItemInBasket[]>([]);
+  const discountRows =
+    itemsInBasket.length > 0 ? getDiscountsFromItems(itemsInBasket) : [];
 
   const handleAddToCartClick = (item: ShopItem) =>
     setItemsInBasket((prevItems) => [...prevItems, { ...item, uuid: uuid() }]);
@@ -58,7 +61,7 @@ function App() {
               paper: classes.drawerPaper,
             }}
           >
-            <BasketTable items={itemsInBasket} />
+            <BasketTable items={itemsInBasket} discountRows={discountRows} />
           </Drawer>
         </Container>
       </Box>
