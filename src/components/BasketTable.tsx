@@ -60,6 +60,12 @@ function BasketTable({ items, discountRows }: Props) {
             {getDiscountRows()}
             <TableRow>
               <TableCell>
+                <Typography variant="subtitle2">Savings</Typography>
+              </TableCell>
+              <TableCell>-{totalAmountOff.toFixed(2)}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
                 <Typography variant="subtitle2">Total</Typography>
               </TableCell>
               <TableCell>{grandTotal}</TableCell>
