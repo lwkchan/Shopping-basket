@@ -17,24 +17,27 @@ function getDiscountsFromItems(items: ShopItemInBasket[]): DiscountRow[] {
     return {
       ...acc,
       [item.name]: {
-        quantity: items.filter((i) => i.name === item.name).length,
-        discount: item.discount,
+        quantityInBasket: items.filter((i) => i.name === item.name).length,
+        discountInfo: item.discount,
       },
     };
-  }, {} as { [key: string]: { quantity: number; discount: DiscountInfo } });
+  }, {} as { [key: string]: { quantityInBasket: number; discountInfo: DiscountInfo } });
 
   // for each item key, the number of items which qualify is modulo * the quantity
   const messages: DiscountRow[] = getObjectKeys(discountItemsQuantity).reduce(
     (acc, itemName) => {
       const item = discountItemsQuantity[itemName];
+      const {
+        quantityInBasket,
+        discountInfo: { label, quantityToQualify, amountOffPerItemQualified },
+      } = item;
 
-      const numberOfTimesQualified =
-        item.quantity / item.discount.quantityToQualify;
-      const amountOff = item.discount.amountOffPerItemQualified * item.quantity;
+      const numberOfTimesQualified = quantityInBasket / quantityToQualify;
+      const amountOff = amountOffPerItemQualified * quantityToQualify;
       const roundedAmountOff = parseFloat(amountOff.toFixed(2));
 
       for (let i = 0; i < numberOfTimesQualified; i++) {
-        acc.push({ label: item.discount.label, amountOff: roundedAmountOff });
+        acc.push({ label, amountOff: roundedAmountOff });
       }
 
       return acc;
