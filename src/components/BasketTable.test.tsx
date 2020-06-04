@@ -9,12 +9,12 @@ const mockItems = [
 ];
 
 it("renders the items' names", () => {
-  render(<BasketTable items={mockItems} />);
+  render(<BasketTable items={mockItems} discountRows={[]} />);
 
   mockItems.forEach((item) => screen.getByText(item.name));
 });
 it("renders the item's prices to two decimal places", () => {
-  render(<BasketTable items={mockItems} />);
+  render(<BasketTable items={mockItems} discountRows={[]} />);
 
   mockItems.forEach((item) => {
     const expectedNumber = item.price.toFixed(2).toString();
@@ -34,6 +34,6 @@ it("renders the item's prices to two decimal places", () => {
   });
 });
 it('has the data-testid of basket for testing purposes', () => {
-  render(<BasketTable items={mockItems} />);
+  render(<BasketTable items={mockItems} discountRows={[]} />);
   screen.getByTestId('basket');
 });
