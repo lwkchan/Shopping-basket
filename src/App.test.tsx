@@ -24,7 +24,8 @@ test('user can add three Beans to the basket and see the expected total amount w
 
   // savings
   getByText('Beans 3 for 2');
-  getByText('-0.50');
+  // user sees the individual and the total savings
+  expect(getAllByText('-0.50')).toHaveLength(2);
 
   // grand total
   getByText('1.00');
@@ -45,7 +46,8 @@ test('user can add two Cokes to the basket and see the expected total amount wit
 
   // user can see savings label and how much was saved
   getByText('Coke 2 for £1');
-  getByText('-0.40');
+  // user sees the individual and the total savings
+  expect(getAllByText('-0.40')).toHaveLength(2);
 
   getByText('1.40'); // sub-total
 
