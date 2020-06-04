@@ -1,5 +1,6 @@
 import { ShopItemInBasket, DiscountRow, DiscountInfo } from './types';
 
+// see https://github.com/Microsoft/TypeScript/issues/12870#issue-195156871
 const getObjectKeys = Object.keys as <ObjectType>(
   object: ObjectType
 ) => Extract<keyof ObjectType, string>[];
