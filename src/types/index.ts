@@ -1,6 +1,6 @@
 export type ShopItemInBasket = ShopItem & { uuid: string };
 
-type DiscountInfo = {
+export type DiscountInfo = {
   amountOffPerItemQualified: number;
   label: string;
   quantityToQualify: number;
@@ -11,4 +11,9 @@ export type ShopItem = {
   image?: string;
   name: string;
   price: number;
+};
+
+export type DiscountRow = {
+  label: string;
+  amountOff: number;
 };
