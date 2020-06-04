@@ -9,6 +9,8 @@ cd path/to/repo
 yarn
 ```
 
+## Commands
+
 ```bash
 yarn start # starts development server
 yarn build # creates production build
